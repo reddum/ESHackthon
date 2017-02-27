@@ -1,0 +1,219 @@
+{
+  "luis_schema_version": "1.3.1",
+  "versionId": "0.1",
+  "name": "玉山銀行黑客松",
+  "desc": "黑客松",
+  "culture": "zh-cn",
+  "intents": [
+    {
+      "name": "None"
+    },
+    {
+      "name": "查詢"
+    }
+  ],
+  "entities": [
+    {
+      "name": "分行據點"
+    },
+    {
+      "name": "市場"
+    },
+    {
+      "name": "投資"
+    },
+    {
+      "name": "餘額"
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "actions": [
+    {
+      "actionName": "查詢",
+      "intentName": "查詢",
+      "channel": null,
+      "actionParameters": []
+    }
+  ],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "投資建議",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "投資",
+          "startPos": 0,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "我想查詢",
+      "intent": "查詢",
+      "entities": []
+    },
+    {
+      "text": "我想查詢帳戶餘額",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "餘額",
+          "startPos": 6,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "我想查詢市場看法",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "市場",
+          "startPos": 4,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "我想了解投資策略",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "投資",
+          "startPos": 4,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "我想知道市場市場看法",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "市場",
+          "startPos": 6,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "我想了解現今市場展望",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "市場",
+          "startPos": 6,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "建議",
+      "intent": "查詢",
+      "entities": []
+    },
+    {
+      "text": "給我一些投資的建議",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "投資",
+          "startPos": 4,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "想了解市場展望",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "市場",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "想知道餘額查詢",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "餘額",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "想知道投資策略",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "投資",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "想知道市場",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "市場",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "告訴我分行據點",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "分行據點",
+          "startPos": 3,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "告訴我分行服務據點",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "分行據點",
+          "startPos": 3,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "告訴我分行資訊",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "分行據點",
+          "startPos": 3,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "查詢分行據點",
+      "intent": "查詢",
+      "entities": [
+        {
+          "entity": "分行據點",
+          "startPos": 2,
+          "endPos": 5
+        }
+      ]
+    }
+  ]
+}
