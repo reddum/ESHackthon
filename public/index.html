@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>玉</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link rel="stylesheet" href="./css/animate.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/canvas-to-blob.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <style>
+    html {
+      font-family: Microsoft JhengHei;
+    }
+    
+    .motherBody {
+      width: 100vw;
+    }
+    
+    #faceDetectVideo {
+      height: 50vh;
+    }
+    
+    .container {
+      margin-top: 30px;
+    }
+    
+    input.text_type {
+      font-family: Comic Sans MS, Courier, arial, helvetica, sans-serif, monospace;
+      color: #FFFFFF;
+      width: 250px;
+      height: 40px;
+      font-size: 20px;
+      background-color: black;
+      border-style: outset;
+      border-width: 3px;
+      border-right-width: 2px;
+      border-bottom-width: 2px;
+      border-color: #ffffff;
+      border-radius: 10px;
+      vertical-align: middle;
+      text-align: middle;
+      padding-left: 10px;
+    }
+    
+    input.password_type {
+      font-family: Comic Sans MS, Courier, arial, helvetica, sans-serif, monospace;
+      color: #FFFFFF;
+      width: 250px;
+      height: 40px;
+      font-size: 20px;
+      background-color: black;
+      border-style: outset;
+      border-width: 3px;
+      border-right-width: 2px;
+      border-bottom-width: 2px;
+      border-color: #ffffff;
+      border-radius: 10px;
+      vertical-align: middle;
+      text-align: middle;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar-fixed">
+    <nav class=" teal darken-1">
+      <div class="nav-wrapper ">
+        <a href="#!" class="brand-logo center">玉山銀行Demo</a>
+      </div>
+    </nav>
+  </div>
+  <div class="container" align="center">
+    <div class="row" id="faceface">
+      <video id="faceDetectVideo" class="screen"></video>
+      <canvas id="screenShotVideo" class="screen"></canvas>
+    </div>
+    <div class="row">
+      <form name="form">
+        <font size="6">帳號 : </font><input type="text" class="text_type" name="id" /><br>
+        <font size="6">密碼 : </font><input type="password" class="password_type" name="pw" /><br>
+        <a class="waves-effect waves-orange btn blue-grey lighten-2 btn-large " id="screenLoginBut">登入</a> or
+        <a class="waves-effect waves-orange btn blue-grey lighten-2 btn-large " id="screenShotBut">拍照登入</a>
+        <a class="waves-effect waves-orange btn blue-grey lighten-2 btn-large " id="sendFaceBut">開始識別</a><br>
+        <input placeholder="Process Console" id="Console" type="text" width="250px" readonly>
+      </form>
+
+    </div>
+  </div>
+  <!-- Modal Structure -->
+  <div id="OutputModal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div>
+        <div class="row" style="text-align:center;">
+          <div class="col s6" id="InputFaceImg">
+          </div>
+          <div class="col s6" id="OutputFaceImg">
+          </div>
+        </div>
+        <hr/>
+        <div class="row" style="text-align:center;">
+          <h3>你是</h3>
+          <div id="OutputName"></div>
+          <div id="OutputSuggest"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">關閉</a>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="./js/face.js"></script>
+
+</html>

@@ -1,0 +1,29 @@
+.demo_btn {
+    padding: 5px 20px;
+    border-style: none;
+    background-color: #008272;
+    color: #ffffff;
+    /*font-family: 'Segoe UI Semilight';*/
+    font-size: 24px;
+}
+
+.demo_btn:hover {
+    background-color: #008272;
+}
+
+.demo_btn:focus {
+    background-color: #008272;
+}
+
+.demo_btn_circle {
+    padding: 0;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 35px;
+    text-indent: -300px;
+}
+
+.mb-2 {
+    margin-bottom: 10px !important;
+}

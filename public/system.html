@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+<html>
+  <head>
+    <title>玉山Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <style>
+      html {
+        font-family: Microsoft JhengHei;
+      }
+      .motherBody{
+        width:100vw;
+      }
+      #faceDetectVideo{
+          height: 50vh;
+      }
+      .container{
+        margin-top: 100px;
+        margin-left: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav class=" teal darken-4">
+        <div class="nav-wrapper ">
+          <a href="#!" class="brand-logo center">玉山銀行系統內部</a>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="row" id="faceface">
+        <div class="col s6">
+          <video id="faceDetectVideo" class="screen"></video>
+        </div>
+        <div class="col s6">
+          <canvas id="screenShotVideo" class="screen"></canvas>
+        </div>
+      </div>
+      <div  class="row">
+        <div class="input-field col s6">
+          <input placeholder="Process Console" id="Console" type="text" class="validate" readonly>
+          <label for="Console">Console</label>
+        </div>
+        <a class="waves-effect waves-light btn" id="screenShotBut">拍照分析</a>
+        <a class="waves-effect waves-light btn" id="sendFaceBut">開始識別</a>
+      </div>
+    </div>
+    <!-- Modal Structure -->
+    <!--
+    <div id="OutputModal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <div>
+          <div class="row" style="text-align:center;">
+            <div class="col s6" id="InputFaceImg">
+            </div>
+            <div class="col s6" id="OutputFaceImg">
+            </div>
+          </div>
+          <hr/>
+          <div class="row" style="text-align:center;">
+            <h3>你是</h3>
+            <div id="OutputName"></div>
+            <div id="OutputSuggest"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">關閉</a>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="./js/face.js"></script>
+</html>-->
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Audio Recorder</title>
+
+	<script src="js/audiodisplay.js"></script>
+	<script src="js/recorderjs/recorder.js"></script>
+	<script src="js/main.js"></script>
+	<style>
+	html { overflow: hidden; }
+	body { 
+		font: 14pt Arial, sans-serif; 
+		background: lightgrey;
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		width: 100%;
+		margin: 0 0;
+	}
+	canvas { 
+		display: inline-block; 
+		background: #202020; 
+		width: 95%;
+		height: 45%;
+		box-shadow: 0px 0px 10px blue;
+	}
+	#controls {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+		height: 20%;
+		width: 100%;
+	}
+	#record { height: 15vh; }
+	#record.recording { 
+		background: red;
+		background: -webkit-radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+		background: -moz-radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+		background: radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+	}
+	#save, #save img { height: 10vh; }
+	#save { opacity: 0.25;}
+	#save[download] { opacity: 1;}
+	#viz {
+		height: 80%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+	}
+	@media (orientation: landscape) {
+		body { flex-direction: row;}
+		#controls { flex-direction: column; height: 100%; width: 10%;}
+		#viz { height: 100%; width: 90%;}
+	}
+
+	</style>
+</head>
+<body>
+	<div id="viz">
+		<canvas id="analyser" width="1024" height="500"></canvas>
+		<canvas id="wavedisplay" width="1024" height="500"></canvas>
+	</div>
+	<div id="controls">
+		<img id="record" src="https://lh3.googleusercontent.com/Js0oHlulOgyv1X8wx3HKE0vMxA1Y-WHx3ZkrrhKX9Sh-4HodJz9WPH4SZOzaKtwOaU-1=w300" onclick="toggleRecording(this);">
+		<a id="save" href="#"><img src="http://icon-icons.com/icons2/841/PNG/512/flat-style-circle-save_icon-icons.com_66942.png" ></a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/speech.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script src="./js/speech.1.0.0.js" type="text/javascript"></script>
+    <script src="js/audiodisplay.js"></script>
+    <script src="js/recorderjs/recorder.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        var client;
+        var request;
+
+        function getMode() {
+            return Microsoft.CognitiveServices.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
+        }
+
+        function getKey() {
+            return "24657dea6ecd4b9da1f91f0a8872189f"; // speech key
+        }
+
+        function getLanguage() {
+            return "zh-tw";
+        }
+
+        function clearText() {
+            document.getElementById("output").value = "";
+            document.getElementById("Esunoutput").value = "";
+        }
+
+        function setText(text) {
+            document.getElementById("output").value += text;
+        }
+
+        function setEsunText(text) {
+            document.getElementById("Esunoutput").value += text;
+        }
+
+        function getLuisConfig() {
+            var appid = "6cca83a7-1c07-43ea-9da5-2da142c12bd0"; // LUIS 
+            var subid = "c10ecfd2573541f2b396adf1c3b0d56e";
+
+            if (appid.length > 0 && subid.length > 0) {
+                return {
+                    appid: appid,
+                    subid: subid
+                };
+            }
+            return null;
+        }
+
+        function Esun_action(Jsondata) {
+            if (Jsondata.entities[0].entity == "分行據點") {
+                getBranchesInfo();
+            } else if (Jsondata.entities[0].entity == "市場") {
+                getRoboInsightInfo();
+            } else if (Jsondata.entities[0].entity == "投資") {
+                getRoboInsightInfo();
+            }
+        }
+
+        function getBranchesInfo() {
+            $.ajax({
+                    url: "/branches",
+                    type: "GET",
+                    dataType: 'json',
+                })
+                .done(function(data) {
+                    // alert("success");
+                    console.log(data);
+                    for (i = 0; i < data["branches"].length; i++) {
+                        setEsunText(data.branches[i].branch_id);
+                        setEsunText(data.branches[i].branch_name);
+                        setEsunText(data.branches[i].location);
+                        setEsunText("\n");
+                    }
+                })
+                .fail(function() {
+                    console.log("error");
+                });
+        }
+
+        function getRoboInsightInfo() {
+            $.ajax({
+                    url: "/market",
+                    type: "GET",
+                    dataType: 'json',
+                })
+                .done(function(data) {
+                    // alert("success");
+                    var Jsondata = data;
+                    console.log(Jsondata);
+                    if (Jsondata.message == "查無數據") {
+                        setEsunText("查無數據");
+                    } else {
+                        111
+                        for (i = 0; i < Jsondata.suggests.length; i++) {
+                            setEsunText(Jsondata.suggests[i].type);
+                            setEsunText("\n");
+                            setEsunText(Jsondata.suggests[i].conservatism);
+                            setEsunText("\n");
+                            setEsunText(Jsondata.suggests[i].neutral);
+                            setEsunText("\n");
+                            setEsunText(Jsondata.suggests[i].optimism);
+                            setEsunText("\n");
+                        }
+                        setEsunText(Jsondata.insight);
+                        setEsunText(Jsondata.strategy);
+                        setEsunText(Jsondata.report_time);
+                    }
+                })
+                .fail(function() {
+                    console.log("error");
+                });
+        }
+
+        function start() {
+            var mode = getMode();
+            var luisCfg = getLuisConfig();
+
+            clearText();
+
+            if (luisCfg) {
+                client = Microsoft.CognitiveServices.SpeechRecognition.SpeechRecognitionServiceFactory.createMicrophoneClientWithIntent(
+                    getLanguage(),
+                    getKey(),
+                    luisCfg.appid,
+                    luisCfg.subid);
+            } else {
+                client = Microsoft.CognitiveServices.SpeechRecognition.SpeechRecognitionServiceFactory.createMicrophoneClient(
+                    mode,
+                    getLanguage(),
+                    getKey());
+            }
+            client.startMicAndRecognition();
+            setTimeout(function() {
+                client.endMicAndRecognition();
+            }, 1500); //Mic time to speed (seconds)
+
+            client.onFinalResponseReceived = function(response) {
+                //  setText(JSON.stringify(response));       
+            }
+
+            client.onIntentReceived = function(response) {
+                setText(response);
+                var Jsondata = JSON.parse(response);
+                Esun_action(Jsondata)
+                console.log(Jsondata.topScoringIntent.intent);
+            };
+        }
+    </script>
+    <style>
+        html {
+            font-family: Microsoft JhengHei;
+        }
+        
+        .motherBody {
+            width: 100vw;
+        }
+        
+        .container {}
+    </style>
+</head>
+
+<body style="font-family: Microsoft JhengHei, Tahoma, Geneva, Verdana, sans-serif">
+    <nav class="navbar teal darken-1">
+        <div class="nav-wrapper ">
+            <a href="#!" class="brand-logo navbar-header">玉山銀行Demo</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div>
+                    <canvas id="analyser" width="512" height="150"></canvas>
+                </div>
+                <div>
+                    <textarea id="Esunoutput" style='width:400px;height:300px'></textarea>
+                </div>
+                <div>
+                    <textarea id="output" style='width:400px;height:200px'></textarea>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div style="height: 150px"></div>
+                <div class="list-group">
+                    <button class="waves-effect waves-orange btn teal darken-4 mb-2" onclick="start()">Start</button>
+                    <button class="waves-effect waves-orange btn teal darken-4 mb-2" onclick="getBranchesInfo()">分行資訊</button>
+                    <button class="waves-effect waves-orange btn teal darken-4 mb-2" onclick="getRoboInsightInfo()">投資建議</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
