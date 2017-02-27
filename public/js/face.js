@@ -135,7 +135,6 @@ function sendIdentifyFace(personGroupId, faceIds, maxNumOfCandidatesReturned, co
 }
 
 function getPersonInfo(PersonGroupId, PersonId) {
-
     var params = {
         // Request parameters
     };
@@ -154,11 +153,10 @@ function getPersonInfo(PersonGroupId, PersonId) {
             var Jsondata = JSON.parse(JSON.stringify(data));
             console.log(Jsondata.name);
             $("#Console").val("Welcome Back !!  " + Jsondata.name);
-            setTimeout(function() { window.location.href = 'eusansystem.html'; }, 1000);
+            setTimeout(function() { window.location.href = 'speech?u=' + Jsondata.name; }, 1000);
 
         })
         .fail(function() {
             alert("error");
         });
-
 }

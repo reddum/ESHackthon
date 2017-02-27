@@ -27,3 +27,11 @@
 .mb-2 {
     margin-bottom: 10px !important;
 }
+
+.mr-4 {
+    margin-right: 20px !important;
+}
+
+.ml-4 {
+    margin-left: 20px !important;
+}
