@@ -13,7 +13,7 @@ var streaming;
 var FaceMap = {};
 var gender;
 var PERSONGROUP_ID = "mtcbotdemo";
-var FACE_KEY = "8f7a031e5133417aa8b1f1ab525efec1";
+var FACE_KEY = "";
 var MAXNumOf_CA_Returned = 1;
 var CONFID_THRESHOLD = 0.623;
 
