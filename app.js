@@ -21,6 +21,7 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/branches', function(req, res) {
+  console.log("/branches");
     var params = {
         client_id: "3a6c1054-fc3a-48cb-805e-af6e96a49598"
     }
@@ -30,11 +31,14 @@ app.get('/branches', function(req, res) {
     };
 
     function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body);
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.parse(body));
-        }
+      if (!error && response.statusCode == 200) {
+        console.log(body);
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.parse(body));       
+      }
+      else {
+        console.log("[Error][Branches]", error);
+      }
     }
 
     request(options, callback);
@@ -104,7 +108,15 @@ app.get('/oauth/authorize', function(req, res) {
 });
 
 app.get('/speech', function(req, res) {
+<<<<<<< Updated upstream
     res.sendFile(__dirname + '/public/eusansystem.html');
+=======
+	res.sendFile(__dirname + '/public/eusansystem.html');
+});	
+
+app.listen(80, function () {
+  console.log('Example app listening on port 80!');
+>>>>>>> Stashed changes
 });
 
 app.listen(8000, function() {
