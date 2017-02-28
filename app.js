@@ -34,6 +34,8 @@ app.get('/branches', function(req, res) {
             console.log(body);
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.parse(body));
+        } else {
+            console.log("[Error][Branches]", error);
         }
     }
 
