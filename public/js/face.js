@@ -152,10 +152,10 @@ function getPersonInfo(PersonGroupId, PersonId) {
             var Jsondata = JSON.parse(JSON.stringify(data));
             console.log(Jsondata.name);
             $("#Console").val("Welcome Back !!  " + Jsondata.name);
+
             getAuthToken(function(data) {
                 setTimeout(function() { window.location.href = 'speech?u=' + Jsondata.name; }, 1000);
             });
-
         })
         .fail(function() {
             alert("error");
