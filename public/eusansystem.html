@@ -184,23 +184,23 @@
         <div class="row">
             <div class="col-md-9">
                 <div>
-                    <canvas id="analyser" width="600" height="200"></canvas>
+                    <h5>Output</h5>
+                    <textarea id="output" style='width:600px;height:300px'></textarea>
                 </div>
                 <div>
                     <h5>語音辦識結果</h5>
                     <textarea id="Esunoutput" style='width:600px;height:300px'></textarea>
                 </div>
-                <div>
-                    <h5>語音辦識結果</h5>
-                    <textarea id="output" style='width:600px;height:200px'></textarea>
-                </div>
             </div>
             <div class="col-md-3">
                 <div style="height: 150px"></div>
                 <div class="list-group">
-                    <button class="waves-effect waves-orange btn teal darken-4 mb-2" onclick="start()">語音輸入</button>
-                    <button class="waves-effect waves-orange btn teal darken-4 mb-2" onclick="getBranchesInfo()">分行資訊</button>
-                    <button class="waves-effect waves-orange btn teal darken-4 mb-2" onclick="getRoboInsightInfo()">投資建議</button>
+                    <button class="waves-effect waves-orange btn darken-4 mb-2" onclick="getBranchesInfo()">分行資訊</button>
+                    <button class="waves-effect waves-orange btn darken-4 mb-2" onclick="getRoboInsightInfo()">投資建議</button>
+                    <button class="waves-effect waves-orange btn darken-4 mb-2" onclick="start()">語音輸入</button>
+                    <div>
+                        <canvas id="analyser" height="200"></canvas>
+                    </div>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ var gender;
 var PERSONGROUP_ID = "mtcbotdemo";
 var FACE_KEY = "";
 var MAXNumOf_CA_Returned = 1;
-var CONFID_THRESHOLD = 0.623;
+var CONFID_THRESHOLD = 0.5;
 
 function videoInit() {
 
@@ -105,12 +105,6 @@ function sendIdentifyFace(personGroupId, faceIds, maxNumOfCandidatesReturned, co
         "maxNumOfCandidatesReturned": maxNumOfCandidatesReturned,
         "confidenceThreshold": confidenceThreshold
     };
-    console.log(identify_reqbody);
-
-    var params = {
-        // Request parameters
-    };
-
     $.ajax({
             url: "https://api.projectoxford.ai/face/v1.0/identify",
             beforeSend: function(xhrObj) {
@@ -125,8 +119,13 @@ function sendIdentifyFace(personGroupId, faceIds, maxNumOfCandidatesReturned, co
         .done(function(data) {
             //alert("success");
             var Jsondata = JSON.parse(JSON.stringify(data));
-            console.log(Jsondata[0].candidates[0].personId);
-            getPersonInfo(personGroupId, Jsondata[0].candidates[0].personId);
+            console.log(Jsondata);
+            if (Jsondata[0].candidates.length == 0) {
+                $("#Console").val("查無此人");
+            } else {
+                console.log(Jsondata[0].candidates[0].personId);
+                getPersonInfo(personGroupId, Jsondata[0].candidates[0].personId);
+            }
         })
         .fail(function() {
             alert("error");

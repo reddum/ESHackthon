@@ -108,17 +108,10 @@ app.get('/oauth/authorize', function(req, res) {
 });
 
 app.get('/speech', function(req, res) {
-<<<<<<< Updated upstream
-    res.sendFile(__dirname + '/public/eusansystem.html');
-=======
 	res.sendFile(__dirname + '/public/eusansystem.html');
 });	
 
 app.listen(80, function () {
   console.log('Example app listening on port 80!');
->>>>>>> Stashed changes
 });
 
-app.listen(8000, function() {
-    console.log('Example app listening on port 80!');
-});
