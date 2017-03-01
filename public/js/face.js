@@ -152,10 +152,29 @@ function getPersonInfo(PersonGroupId, PersonId) {
             var Jsondata = JSON.parse(JSON.stringify(data));
             console.log(Jsondata.name);
             $("#Console").val("Welcome Back !!  " + Jsondata.name);
-            setTimeout(function() { window.location.href = 'speech?u=' + Jsondata.name; }, 1000);
+            getAuthToken(function(data) {
+                setTimeout(function() { window.location.href = 'speech?u=' + Jsondata.name; }, 1000);
+            });
 
         })
         .fail(function() {
             alert("error");
+        });
+}
+
+function getAuthToken(callback) {
+    $.ajax({
+            url: "/oauth/authorize",
+            type: "POST",
+            dataType: 'json',
+        })
+        .done(function(data) {
+            // alert("success");
+            console.log(data);
+            callback(data);
+
+        })
+        .fail(function() {
+            console.log("error");
         });
 }
