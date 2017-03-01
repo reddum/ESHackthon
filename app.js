@@ -68,7 +68,7 @@ app.get('/market', function(req, res) {
     request(options, callback);
 });
 
-app.get('/oauth/authorize', function(req, res) {
+app.post('/oauth/authorize', function(req, res) {
 
     var client_id = "3a6c1054-fc3a-48cb-805e-af6e96a49598";
     var client_secret = "wS8wY5hT2bR7yU0eA3cS0pU6eN0dU4qH8tL2iN3oQ2jE7wV8sB";
