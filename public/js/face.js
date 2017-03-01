@@ -105,12 +105,6 @@ function sendIdentifyFace(personGroupId, faceIds, maxNumOfCandidatesReturned, co
         "maxNumOfCandidatesReturned": maxNumOfCandidatesReturned,
         "confidenceThreshold": confidenceThreshold
     };
-    console.log(identify_reqbody);
-
-    var params = {
-        // Request parameters
-    };
-
     $.ajax({
             url: "https://api.projectoxford.ai/face/v1.0/identify",
             beforeSend: function(xhrObj) {
