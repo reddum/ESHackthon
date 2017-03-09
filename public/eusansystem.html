@@ -35,6 +35,10 @@
             document.getElementById("Esunoutput").value = "";
         }
 
+        function clearEsunText() {
+            document.getElementById("Esunoutput").value = "";
+        }
+
         function setText(text) {
             document.getElementById("output").value += text;
         }
@@ -57,6 +61,7 @@
         }
 
         function Esun_action(Jsondata) {
+            clearEsunText();
             if (Jsondata.entities[0].entity == "分行據點") {
                 getBranchesInfo();
             } else if (Jsondata.entities[0].entity == "市場") {
@@ -67,6 +72,7 @@
         }
 
         function getBranchesInfo() {
+            clearEsunText();
             console.log("getBranchesInfo");
             $.ajax({
                     url: "/branches",
@@ -89,6 +95,7 @@
         }
 
         function getRoboInsightInfo() {
+            clearEsunText();
             $.ajax({
                     url: "/market",
                     type: "GET",
@@ -143,15 +150,23 @@
             client.startMicAndRecognition();
             setTimeout(function() {
                 client.endMicAndRecognition();
-            }, 1500); //Mic time to speed (seconds)
+            }, 5000); //Mic time to speed (seconds)
 
             client.onFinalResponseReceived = function(response) {
                 //  setText(JSON.stringify(response));       
             }
 
             client.onIntentReceived = function(response) {
-                setText(response);
+                console.log(response);
                 var Jsondata = JSON.parse(response);
+                var outputtext;
+                outputtext="您的語音輸入是:\n\n      "+Jsondata.query+"\n\n";
+                if(Jsondata.entities.length!=0){
+                    outputtext+="已經為您搜尋"+Jsondata.entities[0].entity+"相關結果";
+                }else{
+                    outputtext+="無相關結果";
+                }
+                setText(outputtext);
                 Esun_action(Jsondata)
                 console.log(Jsondata.topScoringIntent.intent);
             };
@@ -184,11 +199,11 @@
         <div class="row">
             <div class="col-md-9">
                 <div>
-                    <h5>Output</h5>
+                    <h5>語音輸入結果</h5>
                     <textarea id="output" style='width:600px;height:300px'></textarea>
                 </div>
                 <div>
-                    <h5>語音辦識結果</h5>
+                    <h5>辦識相關結果</h5>
                     <textarea id="Esunoutput" style='width:600px;height:300px'></textarea>
                 </div>
             </div>

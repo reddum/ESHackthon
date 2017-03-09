@@ -13,7 +13,7 @@ var streaming;
 var FaceMap = {};
 var gender;
 var PERSONGROUP_ID = "mtcbotdemo";
-var FACE_KEY = "";
+var FACE_KEY = "8f7a031e5133417aa8b1f1ab525efec1";
 var MAXNumOf_CA_Returned = 1;
 var CONFID_THRESHOLD = 0.5;
 
@@ -154,7 +154,8 @@ function getPersonInfo(PersonGroupId, PersonId) {
             $("#Console").val("Welcome Back !!  " + Jsondata.name);
 
             getAuthToken(function(data) {
-                setTimeout(function() { window.location.href = 'speech?u=' + Jsondata.name; }, 1000);
+                console.log("redirect to speech page")
+                window.location.href = 'speech?u=' + Jsondata.name;
             });
         })
         .fail(function() {
