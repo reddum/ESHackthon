@@ -74,11 +74,10 @@ app.post('/oauth/authorize', function(req, res) {
     var client_secret = "wS8wY5hT2bR7yU0eA3cS0pU6eN0dU4qH8tL2iN3oQ2jE7wV8sB";
     var username = "B204449696";
     var password = "265434";
-    var auth_value = btoa(client_id + ":" + client_secret);
+    var auth_value = "Basic " + btoa(client_id + ":" + client_secret);
     console.log("[Debug][Authorization][Value]::" + auth_value);
 
     var params = {
-        authorization: auth_value,
         grant_type: "password",
         username: username,
         password: password,
@@ -91,17 +90,21 @@ app.post('/oauth/authorize', function(req, res) {
     request({
         headers: {
             'Content-Length': contentLength,
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : auth_value,
         },
         uri: 'https://eospu.esunbank.com.tw/esun/bank/user/oauth/authorize',
         body: formData,
         method: 'POST'
-    }, function(err, res, body) {
+    }, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log("[Debug][API][/oauth/authorize][Response]::" + body);
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.parse(body));
-
+        } else {
+            console.log('error:', error); // Print the error if one occurred
+            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            console.log('body:', body); // Print the HTML for the Google homepage.        
         }
     });
 
