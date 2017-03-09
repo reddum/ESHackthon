@@ -7,6 +7,7 @@ npm install
 ```js
 node app.js
 ```
+Open browser to view [http://localhost/login](http://localhost/login)
 
 ## Reference 
 [Microsoft Cognitive Service](https://www.microsoft.com/cognitive-services/en-us/)

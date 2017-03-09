@@ -219,7 +219,7 @@
 
     var uname = QueryString('u');
     console.log($("#uname"), uname);
-    $("#uname").html(uname);
+    $("#uname").html(decodeURIComponent(uname));
 </script>
 
 </html>
