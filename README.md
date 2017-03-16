@@ -9,6 +9,13 @@ node app.js
 ```
 Open browser to view [http://localhost/login](http://localhost/login)
 
+##LUIS workflow
+![LUIS ai](Image/1.png)
+
+![LUIS App List](Image/2.png)
+
+![新增一個LUIS App](Image/3.png)
+
 ## Reference 
 [Microsoft Cognitive Service](https://www.microsoft.com/cognitive-services/en-us/)
 
