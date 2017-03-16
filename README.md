@@ -14,6 +14,8 @@ Open browser to view [http://localhost/login](http://localhost/login)
 
 [Microsoft Cognitive Service API](https://www.microsoft.com/cognitive-services/en-us/documentation)
 
+[LUIS](https://www.luis.ai/)
+
 [ESun Hackthon API]()
 
 [Node](https://nodejs.org/en/)
