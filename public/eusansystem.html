@@ -59,7 +59,14 @@
             }
             return null;
         }
-
+        function Esun_Triger(Jsondata){
+          console.log(Jsondata);
+          console.log("jsdibojmwpibmwpoembpowsepienvpinsid");
+          if(Jsondata.topScoringIntent.intent=="查詢"){
+            console.log("Triger Intent");
+            Esun_action(Jsondata);
+            }
+        }
         function Esun_action(Jsondata) {
             clearEsunText();
             if (Jsondata.entities[0].entity == "分行據點") {
@@ -167,7 +174,7 @@
                     outputtext+="無相關結果";
                 }
                 setText(outputtext);
-                Esun_action(Jsondata)
+                Esun_Triger(Jsondata)
                 console.log(Jsondata.topScoringIntent.intent);
             };
         }
